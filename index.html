@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEC da Transparência Absoluta</title>
+    <meta name="description" content="Proposta de Emenda à Constituição para estabelecer a transparência absoluta e irrestrita do Estado brasileiro.">
+    <meta property="og:title" content="PEC da Transparência Absoluta">
+    <meta property="og:description" content="O Estado numa vitrine de vidro. Transparência total para o poder, privacidade total para o cidadão.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --green: #009c3b;
+            --green-dark: #006b27;
+            --yellow: #ffdf00;
+            --blue: #002776;
+            --blue-light: #003da5;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #e9ecef;
+            --gray-200: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 39, 118, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 1rem;
+        }
+
+        nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        nav .logo {
+            color: var(--yellow);
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        nav .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, var(--green-dark) 100%);
+            color: var(--white);
+            padding: 8rem 1.5rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 223, 0, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 156, 59, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 223, 0, 0.15);
+            border: 1px solid rgba(255, 223, 0, 0.3);
+            color: var(--yellow);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--blue);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        /* PRINCÍPIO */
+        .principle {
+            background: var(--gray-50);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .principle-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .principle-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--green);
+        }
+
+        .principle-card.right {
+            border-left-color: var(--blue);
+        }
+
+        .principle-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--green-dark);
+        }
+
+        .principle-card.right h3 {
+            color: var(--blue);
+        }
+
+        .principle-card p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header .tag {
+            display: inline-block;
+            background: rgba(0, 156, 59, 0.1);
+            color: var(--green-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+
+        .alt-bg {
+            background: var(--gray-50);
+        }
+
+        /* PILLAR CARDS */
+        .pillars-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pillar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid var(--green);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .pillar-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: var(--gray-900);
+        }
+
+        .pillar-card p {
+            font-size: 0.92rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* SYSTEMS */
+        .systems-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .system-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .system-card .system-name {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--blue);
+            background: rgba(0, 39, 118, 0.06);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .system-card p {
+            font-size: 0.88rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        /* QUOTES */
+        .quotes-section {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--green-dark) 100%);
+            color: var(--white);
+            padding: 5rem 1.5rem;
+        }
+
+        .quotes-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .quote-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 1.25rem;
+            border-left: 3px solid var(--yellow);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .quote-item strong {
+            color: var(--yellow);
+        }
+
+        /* TIMELINE */
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--green);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding-left: 60px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--green);
+        }
+
+        .timeline-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.92rem;
+            color: var(--gray-600);
+        }
+
+        /* CTA */
+        .cta {
+            background: var(--blue);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 1.5rem;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--gray-900);
+            color: var(--gray-600);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--yellow);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.7rem;
+            }
+
+            .principle-grid,
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav .nav-links.open {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 39, 118, 0.98);
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .systems-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .systems-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">TRANSPARENCIA ABSOLUTA</a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#pilares">Pilares</a></li>
+            <li><a href="#sistemas">Sistemas</a></li>
+            <li><a href="#inovacoes">Inovacoes</a></li>
+            <li><a href="#principios">Principios</a></li>
+            <li><a href="#prazos">Prazos</a></li>
+            <li><a href="#textos">Textos completos</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Proposta de Emenda a Constituicao</div>
+        <h1>Transparencia <span>Absoluta</span></h1>
+        <p>O Estado numa vitrine de vidro: sem sigilo, sem ambiguidade, sem margem de manobra. Transparencia total para o poder. Privacidade total para o cidadao.</p>
+        <div class="hero-buttons">
+            <a href="#pilares" class="btn btn-primary">Conheca a PEC</a>
+            <a href="PEC_Transparencia_Absoluta.md" class="btn btn-secondary">Leia o texto completo</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRINCIPIO FUNDAMENTAL -->
+<section class="principle">
+    <div class="section-header">
+        <h2>O principio e simples</h2>
+    </div>
+    <div class="principle-grid">
+        <div class="principle-card">
+            <h3>Transparencia para o Estado</h3>
+            <p>Todo ato praticado pelo poder publico sera integralmente publico, em tempo real e formato aberto. Sem sigilo, sem excecao.</p>
+        </div>
+        <div class="principle-card right">
+            <h3>Privacidade para o cidadao</h3>
+            <p>Inviolabilidade absoluta dos dados do cidadao comum, com travas tecnicas, penais, civis e administrativas contra qualquer uso indevido.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares">
+    <div class="section-header">
+        <div class="tag">Pilares</div>
+        <h2>Os 16 eixos da PEC</h2>
+        <p>Uma transformacao completa na relacao entre Estado e cidadao</p>
+    </div>
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <div class="pillar-icon">&#9878;</div>
+            <h3>Leis claras e objetivas</h3>
+            <p>Vedacao de principios abstratos. Toda lei deve ter regra concreta, destinatario identificavel, conduta descrita e consequencia prevista. Interpretacao literal obrigatoria.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#9992;</div>
+            <h3>Voos transparentes</h3>
+            <p>Publicacao em tempo real de todos os voos da FAB e de agentes publicos. Jatinhos de lobistas com politicos a bordo: cruzamento automatico com contratos.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128197;</div>
+            <h3>Agendas 100% publicas</h3>
+            <p>Toda reuniao, almoco, cafe com interlocutores externos registrado em tempo real. AGENDAGOV como app oficial obrigatorio de agenda. Fim das agendas paralelas.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128205;</div>
+            <h3>Geolocalizacao em tempo real</h3>
+            <p>GPS obrigatorio no expediente. Se o ministro diz que estava em "despacho interno" mas o GPS mostra outro endereco, a contradicao e publica e imediata.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128172;</div>
+            <h3>Comunicacao oficial permanente</h3>
+            <p>COMUNICAGOV: toda mensagem oficial arquivada por 25 anos. Interoperabilidade com WhatsApp e Telegram. Conversa escondida sobre assunto publico e crime.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128663;</div>
+            <h3>Frota rastreada</h3>
+            <p>GPS em todos os veiculos oficiais. Localizacao, motorista, passageiros e custos em tempo real. Alertas automaticos para uso atipico.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128176;</div>
+            <h3>Penduricalhos expostos</h3>
+            <p>Publicacao individualizada de auxilio-moradia, auxilio-paleto, diarias, jetons, cotas parlamentares e cartoes corporativos. Calculo automatico de remuneracao total.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128269;</div>
+            <h3>Emendas rastreadas ponta-a-ponta</h3>
+            <p>Do parlamentar autor ao beneficiario final. Cruzamento automatico com Mapa de Vinculos. Fim do orcamento secreto.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128682;</div>
+            <h3>Quarentena pos-funcional</h3>
+            <p>3 anos sem remuneracao para quem sai do cargo. Sem revolving door. Quem sai por vontade propria, nao volta nunca. O Estado nao e hotel.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#129302;</div>
+            <h3>Transparencia algoritmica</h3>
+            <p>Se o Estado usa IA para decidir sobre sua vida, o codigo e aberto, os criterios sao publicos e voce tem direito a explicacao humana. Caixa-preta proibida.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#9878;</div>
+            <h3>Triangulacao orcamentaria</h3>
+            <p>Nenhum Poder fixa o proprio orcamento. Legislativo fixa o do Executivo; Judiciario fixa o do Legislativo; Executivo fixa o do Judiciario. Autoconceder e nulo.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon">&#128683;</div>
+            <h3>Banimento permanente</h3>
+            <p>Condenacao criminal com transito em julgado = banimento permanente do Estado. Qualquer crime. Sem eleicao, sem concurso, sem CC, sem farda. Pra sempre.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SISTEMAS -->
+<section id="sistemas" class="alt-bg">
+    <div class="section-header">
+        <div class="tag">Sistemas</div>
+        <h2>As plataformas digitais</h2>
+        <p>Infraestrutura tecnologica de transparencia, toda em software livre e codigo aberto</p>
+    </div>
+    <div class="systems-grid">
+        <div class="system-card">
+            <div class="system-name">TRANSPARESTA</div>
+            <p>Portal unico de transparencia do Estado. Todas as informacoes num so lugar, acessivel a qualquer cidadao.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">AGENDAGOV</div>
+            <p>App oficial de agenda. Codigo aberto, log imutavel, cruzamento automatico com vinculos e contratos.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">COMUNICAGOV</div>
+            <p>Plataforma oficial de comunicacao. Protocolo Matrix, bridges com WhatsApp/Telegram, arquivo por 25 anos.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">DENUNCIAGOV</div>
+            <p>Canal anonimo de denuncias georeferenciado, com envio de provas e acompanhamento publico.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">PATRIMONIOGOV</div>
+            <p>Declaracao automatica de patrimonio integrada com Receita, Juntas Comerciais e cartorios.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">CONTRATAGOV</div>
+            <p>Timeline visual de cada contrato publico. Comparativo de precos entre entes. Alertas de sobrepreco.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">SUDIP</div>
+            <p>Sistema Unico de Distribuicao de Processos. Sorteio verificavel, manipulacao impossivel.</p>
+        </div>
+        <div class="system-card">
+            <div class="system-name">CNC</div>
+            <p>Cadastro Nacional de Condenados. Verificacao automatica em tempo real para qualquer vinculo com o Estado.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INOVACOES -->
+<section id="inovacoes">
+    <div class="section-header">
+        <div class="tag">Inovacoes</div>
+        <h2>Mecanismos ineditos</h2>
+        <p>Ferramentas que atacam diretamente os pontos de opacidade e corrupcao</p>
+    </div>
+    <div class="pillars-grid">
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Mapa de Vinculos Societarios</h3>
+            <p>Cruzamento automatico de parentesco, sociedades e vinculos entre agentes publicos e empresas com contratos no Estado.</p>
+        </div>
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Detector de Nepotismo Cruzado</h3>
+            <p>Mapeamento automatico de nomeacoes reciprocas: A nomeia parente de B, B nomeia parente de A. O sistema flagra.</p>
+        </div>
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Cadastro Nacional de Lobistas</h3>
+            <p>Registro obrigatorio com clientes, valores e temas. Cruzado com agendas e contratos na TRANSPARESTA.</p>
+        </div>
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Transparencia da Propaganda Estatal</h3>
+            <p>Publicacao integral de cada peca, agencia, veiculo e valor. Cruzamento com o Mapa de Vinculos.</p>
+        </div>
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Verificador de Fundamentacao</h3>
+            <p>Ferramenta publica para conferir se a norma citada numa decisao judicial realmente diz o que o juiz afirma.</p>
+        </div>
+        <div class="pillar-card" style="border-top-color: var(--blue);">
+            <h3>Sigilo bancario extinto para agentes</h3>
+            <p>Agentes publicos nao tem sigilo bancario. A conta do servidor e publica; a conta do cidadao e sagrada.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quotes-section" id="principios">
+    <div class="section-header" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--white);">Os principios, em resumo</h2>
+    </div>
+    <div class="quotes-grid">
+        <div class="quote-item">
+            <strong>A transparencia e para o Estado;</strong> a privacidade e para o cidadao.
+        </div>
+        <div class="quote-item">
+            <strong>O software e do povo;</strong> o codigo e aberto.
+        </div>
+        <div class="quote-item">
+            <strong>O voto do parlamentar e publico;</strong> o voto do cidadao e secreto.
+        </div>
+        <div class="quote-item">
+            <strong>O orcamento do general e publico;</strong> a conta do cidadao e sagrada.
+        </div>
+        <div class="quote-item">
+            <strong>A agenda do Estado e do povo;</strong> o encontro escuso e impossivel.
+        </div>
+        <div class="quote-item">
+            <strong>A mensagem oficial e permanente;</strong> a conversa escondida e crime.
+        </div>
+        <div class="quote-item">
+            <strong>O dado do cidadao e sagrado;</strong> quem tocar, perde o cargo e vai preso.
+        </div>
+        <div class="quote-item">
+            <strong>A lei e clara;</strong> o principio abstrato e invalido.
+        </div>
+        <div class="quote-item">
+            <strong>Saiu por vontade?</strong> Nao volta. O Estado nao e hotel.
+        </div>
+        <div class="quote-item">
+            <strong>Condenado nao serve o povo.</strong> Qualquer crime. Pra sempre.
+        </div>
+        <div class="quote-item">
+            <strong>O voo do politico e rastreado;</strong> o jatinho do lobista e registrado.
+        </div>
+        <div class="quote-item">
+            <strong>O texto diz o que diz.</strong> Sem hermeneutica pentadimensional. Sem desculpas.
+        </div>
+    </div>
+</section>
+
+<!-- PRAZOS -->
+<section id="prazos">
+    <div class="section-header">
+        <div class="tag">Implementacao</div>
+        <h2>Prazos de implantacao</h2>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h4>Imediato (na publicacao)</h4>
+            <p>Vedacao ao voto secreto em todas as casas legislativas. Banimento de condenados ja se aplica.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Ate 1 ano</h4>
+            <p>TRANSPARESTA no ar. Publicacao de remuneracoes, contratos, orcamentos. AGENDAGOV em operacao. Geolocalizacao ativa.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Ate 2 anos</h4>
+            <p>COMUNICAGOV em pleno funcionamento. GPS em toda frota oficial. CONTRATAGOV, DENUNCIAGOV e PATRIMONIOGOV operacionais.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Ate 3 anos</h4>
+            <p>Migracao completa para software livre. SUDIP implantado. Mapa de Vinculos completo. Detector de nepotismo ativo.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Ate 5 anos</h4>
+            <p>Revisao de toda legislacao federal para cumprimento das regras de clareza e objetividade.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Ate 7 anos</h4>
+            <p>Revisao das legislacoes estaduais e municipais. Sistema completamente implantado em todos os niveis.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="textos">
+    <h2>Leia os textos completos</h2>
+    <p>A PEC, o Projeto de Lei Complementar e a Justificacao estao disponiveis integralmente.</p>
+    <div class="cta-buttons">
+        <a href="PEC_Transparencia_Absoluta.md" class="btn btn-primary">PEC Completa</a>
+        <a href="PL_Transparencia_Absoluta.md" class="btn btn-green">Projeto de Lei</a>
+        <a href="Justificacao_Transparencia_Absoluta.md" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4);">Justificacao</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>PEC da Transparencia Absoluta &mdash; Proposta de Emenda a Constituicao</p>
+    <p style="margin-top: 0.5rem;">Codigo-fonte aberto no <a href="https://github.com/victorgschneider/transparenciaabsoluta.github.io">GitHub</a></p>
+</footer>
+
+</body>
+</html>
